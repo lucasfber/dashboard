@@ -1,12 +1,14 @@
 import "./App.css";
 import Logo from "./assets/logo.svg";
 import Avatar from "./assets/avatar.svg";
+import { useState } from "react";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <>
       <div className="main-wrapper">
-        <aside className="sidenav">
+        <aside className={isOpen ? "sidenav" : "sidenav collapse"}>
           <div className="logo-wrapper">
             <img src={Logo} alt="Logo" />
           </div>
@@ -94,10 +96,12 @@ function App() {
             </ul>
           </nav>
         </aside>
-        <div className="content-wrapper">
+        <div
+          className={isOpen ? "content-wrapper" : "content-wrapper collapse"}
+        >
           <header className="navbar">
             <div className="menu-wrapper">
-              <button className="btn-menu">
+              <button className="btn-menu" onClick={() => setIsOpen(!isOpen)}>
                 <ion-icon name="menu-sharp"></ion-icon>
               </button>
             </div>
